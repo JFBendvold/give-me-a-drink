@@ -3,7 +3,8 @@ import { Redirect, useRouter } from 'expo-router';
 import { Text, View, StyleSheet } from "react-native";
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
-
+import SearchButton from '../components/searchButton';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function Index() {
   const [fontsLoaded, fontError] = useFonts({ // Load fonts
@@ -27,20 +28,26 @@ export default function Index() {
   }
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>
-        This is the index screen. Edit the file app/index.js to change this
-      </Text>
-    </View>
+    <SafeAreaView style={styles.container} onLayout={onLayoutRootView}>
+      <View style={styles.content}>
+        <SearchButton />
+        <Text style={styles.text}>
+          This is the index screen. Edit the file app/index.js to change this
+        </Text>
+      </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: "#000",
+  },
+  content: {
+    flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#000",
   },
   text: {
     color: "#fff",
