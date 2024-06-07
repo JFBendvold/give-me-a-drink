@@ -10,7 +10,7 @@ export default function SearchButton() {
     }
 
     return (
-        <TouchableOpacity style={styles.button} onPress={handlePress}>
+        <TouchableOpacity style={styles.button} onPress={handlePress} activeOpacity={0.8}>
             <Ionicons name="search" size={24} color="black" />
         </TouchableOpacity>
     );
