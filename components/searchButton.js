@@ -11,7 +11,7 @@ export default function SearchButton() {
 
     return (
         <TouchableOpacity style={styles.button} onPress={handlePress} activeOpacity={0.8}>
-            <Ionicons name="search" size={24} color="black" />
+            <Ionicons name="search" size={24} color="#5E548E" />
         </TouchableOpacity>
     );
 }
@@ -21,7 +21,9 @@ const styles = StyleSheet.create({
         width: 40,
         height: 40,
         borderRadius: 20,
-        backgroundColor: 'white',
+        backgroundColor: '#000',
+        borderColor: '#5E548E',
+        borderWidth: 1,
         justifyContent: 'center',
         alignItems: 'center',
         position: 'absolute',
