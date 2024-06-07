@@ -7,11 +7,13 @@ import SearchButton from '../components/searchButton';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import TopBanner from '../components/topBanner';
 import DiscoverButton from '../components/discoverButton';
+import HomeTitle from '../components/homeTitle';
 
 export default function Index() {
   const [fontsLoaded, fontError] = useFonts({ // Load fonts
     'Nunito': require('../assets/fonts/Nunito-Regular.ttf'),
     'Nunito-Bold': require('../assets/fonts/Nunito-Bold.ttf'),
+    'Nunito-Italic': require('../assets/fonts/Nunito-Italic.ttf'),
   });
   const router = useRouter();
 
@@ -33,6 +35,8 @@ export default function Index() {
     <SafeAreaView style={styles.container} onLayout={onLayoutRootView}>
       <View style={styles.content}>
         <SearchButton />
+        <HomeTitle />
+        <View style={{ marginTop: 20 }} />
         <TopBanner />
         <View style={{ marginTop: 20 }} />
         <DiscoverButton />
