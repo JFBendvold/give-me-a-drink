@@ -2,15 +2,18 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, TouchableOpacity, Alert, View, Text } from 'react-native';
 import { Image } from 'expo-image';
+import { useRouter } from 'expo-router';
 
 /**
  * Top banner component, displays the drink of the week
  */
 export default function TopBanner() {
     const [drink, setDrink] = useState(null);
+    const route = useRouter();
     
     useEffect(() => {
         setDrink({
+            id: 1112,
             name: "Gin & Tonic",
             image: "https://example.com/image.jpg",
         });
@@ -18,8 +21,7 @@ export default function TopBanner() {
 
     // Handle click on the banner
     const handleClick = () => {
-        //TODO: Navigate to the drink of the week
-        Alert.alert("Drink of the week", "Gin & Tonic");
+        route.push('/drink/1114');
     };
     
     if (!drink) {
