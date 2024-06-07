@@ -5,6 +5,7 @@ import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import SearchButton from '../components/searchButton';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import TopBanner from '../components/topBanner';
 
 export default function Index() {
   const [fontsLoaded, fontError] = useFonts({ // Load fonts
@@ -31,9 +32,7 @@ export default function Index() {
     <SafeAreaView style={styles.container} onLayout={onLayoutRootView}>
       <View style={styles.content}>
         <SearchButton />
-        <Text style={styles.text}>
-          This is the index screen. Edit the file app/index.js to change this
-        </Text>
+        <TopBanner />
       </View>
     </SafeAreaView>
   );
@@ -46,8 +45,10 @@ const styles = StyleSheet.create({
   },
   content: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: "top",
+    alignItems: "top",
+    paddingTop: 20,
+    paddingHorizontal: 20,
   },
   text: {
     color: "#fff",
