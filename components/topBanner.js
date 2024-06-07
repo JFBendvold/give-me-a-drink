@@ -46,7 +46,7 @@ export default function TopBanner() {
 const styles = StyleSheet.create({
     container: {
         borderColor: "#5E548E",
-        borderWidth: 1,
+        borderWidth: 0,
         borderRadius: 20,
         width: "100%",
         height: 150,

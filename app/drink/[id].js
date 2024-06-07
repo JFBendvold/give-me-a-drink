@@ -1,27 +1,29 @@
 import { useLocalSearchParams } from 'expo-router';
 import { Text, View, StyleSheet } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function Drink() {
     const { id } = useLocalSearchParams();
+
     return (
-        <View style={styles.container}>
-            <Text style={styles.title}>
-                Drink {id}
-            </Text>
-        </View>
+        <SafeAreaView style={styles.container}>
+            <View style={styles.content}>
+
+            </View>
+        </SafeAreaView>
     );
 }
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#000',
+        backgroundColor: "#000",
     },
-    title: {
-        fontSize: 20,
-        fontWeight: 'bold',
-        color: '#fff',
+    content: {
+        flex: 1,
+        justifyContent: "top",
+        alignItems: "top",
+        paddingTop: 20,
+        paddingHorizontal: 20,
     },
 })
