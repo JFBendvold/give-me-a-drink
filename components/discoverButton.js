@@ -6,45 +6,33 @@ import { Image } from 'expo-image';
 /**
  * Top banner component, displays the drink of the week
  */
-export default function TopBanner() {
-    const [drink, setDrink] = useState(null);
-    
-    useEffect(() => {
-        setDrink({
-            name: "Gin & Tonic",
-            image: "https://example.com/image.jpg",
-        });
-    }, []);
-
+export default function DiscoverButton() {
     // Handle click on the banner
     const handleClick = () => {
         //TODO: Navigate to the drink of the week
-        Alert.alert("Drink of the week", "Gin & Tonic");
+        Alert.alert("Discover");
     };
-    
-    if (!drink) {
-        return null;
-    }
     
     return (
         <TouchableOpacity style={styles.container} activeOpacity={0.8} onPress={handleClick}>
             <View style={styles.textContainer}>
-                <Text style={styles.topText}>Drink of the week</Text>
-                <Text style={styles.drinkName}>{drink.name}</Text>
+                <Text style={styles.drinkName}>
+                    Give me a drink
+                </Text>
+                <Text style={styles.topText}>
+                    Based on what you have
+                </Text>
             </View>
-            <Image
-                source={require('../assets/images/placeholder/drink.png')}
-                style={styles.image}
-                contentFit='cover'
-            />
+            <View style={styles.iconContainer}>
+                <Ionicons name="color-wand-outline" size={64} color="#9F86C0" />
+            </View>
         </TouchableOpacity>
     );
 }
 
 const styles = StyleSheet.create({
     container: {
-        borderColor: "#5E548E",
-        borderWidth: 1,
+        backgroundColor: "#5E548E",
         borderRadius: 20,
         width: "100%",
         height: 150,
@@ -54,6 +42,8 @@ const styles = StyleSheet.create({
     },
     textContainer: {
         padding: 20,
+        alignItems: "flex-start",
+        justifyContent: "center",
     },
     topText: {
         color: "#fff",
@@ -66,10 +56,8 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
         fontFamily: "Nunito-Bold",
     },
-    image: {
-        width: 120,
-        height: 120,
-        borderRadius: 20,
+    iconContainer: {
+        padding: 20,
         marginRight: 20,
     },
 });

@@ -6,6 +6,7 @@ import * as SplashScreen from 'expo-splash-screen';
 import SearchButton from '../components/searchButton';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import TopBanner from '../components/topBanner';
+import DiscoverButton from '../components/discoverButton';
 
 export default function Index() {
   const [fontsLoaded, fontError] = useFonts({ // Load fonts
@@ -33,6 +34,8 @@ export default function Index() {
       <View style={styles.content}>
         <SearchButton />
         <TopBanner />
+        <View style={{ marginTop: 20 }} />
+        <DiscoverButton />
       </View>
     </SafeAreaView>
   );
