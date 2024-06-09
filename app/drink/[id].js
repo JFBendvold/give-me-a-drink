@@ -1,8 +1,9 @@
 import { useLocalSearchParams } from 'expo-router';
 import React, { useEffect, useState } from 'react';
-import { Dimensions, TouchableOpacity, StyleSheet, Text, View, Alert } from 'react-native';
+import { Dimensions, TouchableOpacity, StyleSheet, Text, View, Alert, Switch } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { Image } from 'expo-image';
+import Footer from '../../components/drink/footer';
 import BackButton from '../../components/drink/backButton';
 import Animated, {
 	interpolate,
@@ -17,6 +18,8 @@ const IMG_HEIGHT = 300;
 export default function Drink() {
     const { id } = useLocalSearchParams();
     const [drink, setDrink] = useState(null);
+    const [isFavorite, setIsFavorite] = useState(false); // Local storage for favorite status
+    const [measure, setMeasure] = useState("cl"); // Local storage for measurement unit
 
     // Load the drink
     useEffect(() => {
@@ -24,7 +27,7 @@ export default function Drink() {
             id: id,
             name: "Gin & Tonic",
             image: "https://example.com/image.jpg",
-            favorite: false,
+            favorite: false, // TODO: Replace with local storage value
             totalLikes: 37,
             ingredients: [
                 { name: "Gin", amount: "4 cl", amountAlt: "2 oz" },
@@ -36,7 +39,7 @@ export default function Drink() {
                 { step: 1, text: "Fill a glass with ice cubes." },
                 { step: 2, text: "Add the gin and tonic water." },
                 { step: 3, text: "Stir gently." },
-                { step: 4, text: "Garnish with a slice of lime." }
+                { step: 4, text: "Garnish with a slice of lime. You can also squeeze the lime into the drink for extra flavor." }
             ]
         });
     }, []);
@@ -87,12 +90,27 @@ export default function Drink() {
                     </TouchableOpacity>
                 </View>
                 <Text style={styles.description}>{drink?.description}</Text>
-                <Text style={styles.ingredientTitle}>Ingredients:</Text>
+                <View style={styles.ingredientTitleRow}>
+                    <Text style={styles.ingredientTitle}>Ingredients:</Text>
+                    <View style={{ flexDirection: "row", alignItems: "center" }}>
+                        <Text style={styles.ingridientUnit}>cl</Text>
+                        <Switch
+                            trackColor={{ false: "#9F86C0", true: "#9F86C0" }}
+                            thumbColor="#fff"
+                            ios_backgroundColor="#231942"
+                            onValueChange={() => setMeasure(measure === "cl" ? "oz" : "cl")}
+                            value={measure === "oz"}
+                        />
+                        <Text style={styles.ingridientUnit}>oz</Text>
+                    </View>
+                </View>
                 <View style={{ marginBottom: 10 }} />
                 {drink?.ingredients.map((ingredient, index) => (
                     <View key={index} style={styles.ingredient}>
                         <Text style={styles.ingridientText}>{ingredient.name}</Text>
-                        <Text style={styles.ingridientAmount}>{ingredient.amount}</Text>
+                        <Text style={styles.ingridientAmount}>
+                            {measure === "cl" ? ingredient.amount : ingredient.amountAlt}
+                        </Text>
                     </View>
                 ))}
                 <Text style={styles.ingredientTitle}>Guide:</Text>
@@ -107,6 +125,7 @@ export default function Drink() {
                         <Text style={styles.stepText}>{step.text}</Text>
                     </View>
                 ))}
+                <Footer />
             </View>
         </Animated.ScrollView>
     </View>
@@ -172,11 +191,11 @@ const styles = StyleSheet.create({
         color: "#9F86C0",
         fontSize: 20,
         fontFamily: "Nunito-Bold",
-        marginTop: 10,
     },
     step: {
         flexDirection: "row",
         marginBottom: 10,
+        alignItems: "center",
     },
     stepCount: {
         borderColor: "#fff",
@@ -197,5 +216,17 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontFamily: "Nunito",
         marginLeft: 10,
+    },
+    ingredientTitleRow: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "center",
+        marginTop: 10,
+    },
+    ingridientUnit: {
+        color: "#9F86C0",
+        fontSize: 16,
+        fontFamily: "Nunito",
+        marginHorizontal: 5,
     },
 })
