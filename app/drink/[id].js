@@ -113,6 +113,7 @@ export default function Drink() {
                         </Text>
                     </View>
                 ))}
+                <View style={{ marginBottom: 10 }} />
                 <Text style={styles.ingredientTitle}>Guide:</Text>
                 <View style={{ marginBottom: 10 }} />
                 {drink?.guide.map((step, index) => (
